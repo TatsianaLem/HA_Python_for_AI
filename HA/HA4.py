@@ -1,10 +1,12 @@
+import os
+
 import google.generativeai as genai
 import time
 import numpy as np
 from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type
 
-API_KEY = "AIzaSyAQe8vve3rghhJsXb5pBsTj11fDQAubOU8"
-genai.configure(api_key=API_KEY)
+api_key = os.getenv("GEMINI_API_KEY")
+genai.configure(api_key=api_key)
 
 # Функция для получения эмбеддингов с защитой от блокировки API и таймаутов
 @retry(
